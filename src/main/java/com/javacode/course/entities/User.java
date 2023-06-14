@@ -20,8 +20,7 @@ public class User implements Serializable {
 
     public User() {};
 
-    public User(Long id, String name, String email, String number, String password) {
-        this.id = id;
+    public User(String name, String email, String number, String password) {
         this.name = name;
         this.email = email;
         this.number = number;
