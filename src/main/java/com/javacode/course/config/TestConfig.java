@@ -1,9 +1,11 @@
 package com.javacode.course.config;
 
+import com.javacode.course.entities.Category;
 import com.javacode.course.entities.Order;
 import com.javacode.course.entities.User;
 
 import com.javacode.course.enums.OrderStatus;
+import com.javacode.course.repositories.CategoryRepository;
 import com.javacode.course.repositories.OrderRepository;
 import com.javacode.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
         User u1 = new User("Maria Brown", "maria@gmail.com", "9921312393", "11231432");
@@ -33,8 +38,11 @@ public class TestConfig implements CommandLineRunner {
         Order o2 = new Order(Instant.parse("2023-06-15T00:02:55Z"), OrderStatus.valueOf("DELIVERED"), u2);
         Order o3 = new Order(Instant.parse("2023-02-06T23:22:32Z"), OrderStatus.valueOf("CANCELED"), u1);
 
+        Category c1 = new Category("Miscelaneous");
+
         userRepositor.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
+        categoryRepository.saveAll(Arrays.asList(c1));
     }
 
 }
