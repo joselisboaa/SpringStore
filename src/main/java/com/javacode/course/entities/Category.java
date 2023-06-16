@@ -16,7 +16,8 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-//    private List<String> listOfProducts = new ArrayList<>();
+    @ManyToMany
+    private List<Product> listOfProducts = new ArrayList<>();
 
     public Category() {}
 
@@ -26,6 +27,10 @@ public class Category implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public List<Product> getListOfProducts() {
+        return listOfProducts;
     }
 
     public String getName() {
