@@ -3,9 +3,7 @@ package com.javacode.course.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 public class Category implements Serializable {
@@ -17,7 +15,7 @@ public class Category implements Serializable {
     private String name;
 
     @ManyToMany
-    private List<Product> listOfProducts = new ArrayList<>();
+    private Set<Product> products = new HashSet<>();
 
     public Category() {}
 
@@ -29,8 +27,8 @@ public class Category implements Serializable {
         return id;
     }
 
-    public List<Product> getListOfProducts() {
-        return listOfProducts;
+    public Set<Product> getProducts() {
+        return products;
     }
 
     public String getName() {
@@ -46,11 +44,11 @@ public class Category implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return Objects.equals(id, category.id) && Objects.equals(name, category.name);
+        return Objects.equals(id, category.id) && Objects.equals(name, category.name) && Objects.equals(products, category.products);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, products);
     }
 }
