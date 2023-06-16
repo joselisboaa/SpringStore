@@ -2,11 +2,13 @@ package com.javacode.course.config;
 
 import com.javacode.course.entities.Category;
 import com.javacode.course.entities.Order;
+import com.javacode.course.entities.Product;
 import com.javacode.course.entities.User;
 
 import com.javacode.course.enums.OrderStatus;
 import com.javacode.course.repositories.CategoryRepository;
 import com.javacode.course.repositories.OrderRepository;
+import com.javacode.course.repositories.ProductRepository;
 import com.javacode.course.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -29,6 +31,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
         User u1 = new User("Maria Brown", "maria@gmail.com", "9921312393", "11231432");
@@ -40,9 +45,12 @@ public class TestConfig implements CommandLineRunner {
 
         Category c1 = new Category("Miscelaneous");
 
+        Product p1 = new Product("Rubber duck", 9.99, "https://t4.ftcdn.net/jpg/05/30/31/97/240_F_530319725_6fc5qCb5px0pH2klGTiKprXW71tDbJiK.jpg");
+
         userRepositor.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
         categoryRepository.saveAll(Arrays.asList(c1));
+        productRepository.saveAll(Arrays.asList(p1));
     }
 
 }

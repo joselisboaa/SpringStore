@@ -19,6 +19,14 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
+    public Product() {}
+
+    public Product(String name, Double price, String imgUrl) {
+        this.name = name;
+        this.price = price;
+        this.imgUrl = imgUrl;
+    }
+
     public Long getId() {
         return id;
     }
