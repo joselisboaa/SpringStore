@@ -46,11 +46,12 @@ public class TestConfig implements CommandLineRunner {
         Category c1 = new Category("Miscellaneous");
 
         Product p1 = new Product("Rubber duck", 9.99, "A cool rubber duck","https://t4.ftcdn.net/jpg/05/30/31/97/240_F_530319725_6fc5qCb5px0pH2klGTiKprXW71tDbJiK.jpg");
+        Product p2 = new Product("Rubber duck 2", 9.99, "A second cool rubber duck","https://t4.ftcdn.net/jpg/05/30/31/97/240_F_530319725_6fc5qCb5px0pH2klGTiKprXW71tDbJiK.jpg");
 
         userRepositor.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
         categoryRepository.saveAll(Arrays.asList(c1));
-        productRepository.saveAll(Arrays.asList(p1));
+        productRepository.saveAll(Arrays.asList(p1, p2));
     }
 
 }

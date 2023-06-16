@@ -1,7 +1,7 @@
 package com.javacode.course.entities;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
 import java.util.*;
@@ -13,9 +13,12 @@ public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false)
     private String name;
-    @Nullable
     private String description;
+
+    @Column(nullable = false)
     private Double price;
     private String imgUrl;
 
