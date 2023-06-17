@@ -1,7 +1,7 @@
 package com.javacode.course.entities;
 
 import jakarta.persistence.*;
-import org.springframework.lang.NonNull;
+
 
 import java.io.Serializable;
 import java.util.*;
@@ -23,6 +23,9 @@ public class Product implements Serializable {
     private String imgUrl;
 
     @ManyToMany
+    @JoinTable(name = "product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
     public Product() {}
@@ -44,6 +47,10 @@ public class Product implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
     }
 
     public String getDescription() {

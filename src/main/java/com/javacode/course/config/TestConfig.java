@@ -44,13 +44,18 @@ public class TestConfig implements CommandLineRunner {
         Order o3 = new Order(Instant.parse("2023-02-06T23:22:32Z"), OrderStatus.valueOf("CANCELED"), u1);
 
         Category c1 = new Category("Miscellaneous");
+        Category c2 = new Category("Rubber Objects");
 
         Product p1 = new Product("Rubber duck", 9.99, "A cool rubber duck","https://t4.ftcdn.net/jpg/05/30/31/97/240_F_530319725_6fc5qCb5px0pH2klGTiKprXW71tDbJiK.jpg");
         Product p2 = new Product("Rubber duck 2", 9.99, "A second cool rubber duck","https://t4.ftcdn.net/jpg/05/30/31/97/240_F_530319725_6fc5qCb5px0pH2klGTiKprXW71tDbJiK.jpg");
 
+        p1.getCategories().add(c1);
+        p1.getCategories().add(c2);
+        p2.getCategories().add(c1);
+
         userRepositor.saveAll(Arrays.asList(u1, u2));
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
-        categoryRepository.saveAll(Arrays.asList(c1));
+        categoryRepository.saveAll(Arrays.asList(c1, c2));
         productRepository.saveAll(Arrays.asList(p1, p2));
     }
 
