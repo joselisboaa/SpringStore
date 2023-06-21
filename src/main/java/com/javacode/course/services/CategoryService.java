@@ -26,9 +26,9 @@ public class CategoryService  {
     }
 
     public Category create(Category category) {
-        Category newCategory = repository.save(category);
+        Category createdCategory = repository.save(category);
 
-        return newCategory;
+        return createdCategory;
     }
 
     public void delete(Long id) {

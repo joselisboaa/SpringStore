@@ -32,11 +32,11 @@ public class CategoryResource {
 
     @PostMapping
     public ResponseEntity<Category> create(@RequestBody Category category) {
-        Category newCategory = service.create(category);
+        Category createdCategory = service.create(category);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newCategory.getId()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdCategory.getId()).toUri();
 
-        return ResponseEntity.created(uri).body(newCategory);
+        return ResponseEntity.created(uri).body(createdCategory);
     }
 
     @DeleteMapping(value = "/{id}")
