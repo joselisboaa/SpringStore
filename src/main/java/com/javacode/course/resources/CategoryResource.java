@@ -4,6 +4,7 @@ import com.javacode.course.entities.Category;
 import com.javacode.course.services.CategoryService;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,13 +20,15 @@ public class CategoryResource {
     private CategoryService service;
 
     @GetMapping
-    public List<Category> getAll() {
-        return service.getAll();
+    public ResponseEntity<List<Category>> getAll() {
+        List<Category> categories = service.getAll();
+        return ResponseEntity.ok().body(categories);
     }
 
     @GetMapping(value = "/{id}")
-    public Category getById(@PathVariable Long id) {
-        return service.getById(id);
+    public ResponseEntity<Category> getById(@PathVariable Long id) {
+        Category category = service.getById(id);
+        return ResponseEntity.ok().body(category);
     }
 }
 
