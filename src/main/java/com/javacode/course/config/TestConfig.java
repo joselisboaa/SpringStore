@@ -1,15 +1,9 @@
 package com.javacode.course.config;
 
-import com.javacode.course.entities.Category;
-import com.javacode.course.entities.Order;
-import com.javacode.course.entities.Product;
-import com.javacode.course.entities.User;
+import com.javacode.course.entities.*;
 
 import com.javacode.course.enums.OrderStatus;
-import com.javacode.course.repositories.CategoryRepository;
-import com.javacode.course.repositories.OrderRepository;
-import com.javacode.course.repositories.ProductRepository;
-import com.javacode.course.repositories.UserRepository;
+import com.javacode.course.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +28,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private OrderItemRepository orderItemRepository;
+
     @Override
     public void run(String... args) throws Exception {
         User u1 = new User("Maria Brown", "maria@gmail.com", "9921312393", "11231432");
@@ -49,6 +46,10 @@ public class TestConfig implements CommandLineRunner {
         Product p1 = new Product("Rubber duck", 9.99, "A cool rubber duck","https://t4.ftcdn.net/jpg/05/30/31/97/240_F_530319725_6fc5qCb5px0pH2klGTiKprXW71tDbJiK.jpg");
         Product p2 = new Product("Rubber duck 2", 9.99, "A second cool rubber duck","https://t4.ftcdn.net/jpg/05/30/31/97/240_F_530319725_6fc5qCb5px0pH2klGTiKprXW71tDbJiK.jpg");
 
+        OrderItem oi1 = new OrderItem(o1, p1, 5, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o2, p2, 15, p1.getPrice());
+        OrderItem oi3 = new OrderItem(o1, p2, 2, p1.getPrice());
+
         p1.getCategories().add(c1);
         p1.getCategories().add(c2);
         p2.getCategories().add(c1);
@@ -57,6 +58,7 @@ public class TestConfig implements CommandLineRunner {
         orderRepository.saveAll(Arrays.asList(o1, o2, o3));
         categoryRepository.saveAll(Arrays.asList(c1, c2));
         productRepository.saveAll(Arrays.asList(p1, p2));
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3));
     }
 
 }

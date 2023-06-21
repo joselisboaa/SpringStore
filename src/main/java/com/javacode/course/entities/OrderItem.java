@@ -1,8 +1,8 @@
 package com.javacode.course.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.javacode.course.entities.pk.OrderItemPK;
 import jakarta.persistence.*;
-import org.aspectj.weaver.ast.Or;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,7 +12,7 @@ public class OrderItem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @EmbeddedId
-    private OrderItemPK id;
+    private OrderItemPK id = new OrderItemPK();
 
     @Column(nullable = false)
     private Integer quantity;
@@ -29,6 +29,7 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
+    @JsonIgnore
     public Order getOrder() {
         return id.getOrder();
     }
