@@ -33,11 +33,11 @@ public class OrderResource {
 
     @PostMapping
     public ResponseEntity<Order> create(@RequestBody Order order) {
-        Order newOrder = service.create(order);
+        Order createdOrder = service.create(order);
 
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newOrder.getOrderStatus()).toUri();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdOrder.getOrderStatus()).toUri();
 
-        return ResponseEntity.created(uri).body(newOrder);
+        return ResponseEntity.created(uri).body(createdOrder);
     }
 
     @DeleteMapping(value = "/{id}")

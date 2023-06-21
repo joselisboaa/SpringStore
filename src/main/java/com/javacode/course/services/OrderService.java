@@ -26,9 +26,9 @@ public class OrderService {
     }
 
     public Order create(Order order) {
-        Order newOrder = orderRepository.save(order);
+        Order createdOrder = orderRepository.save(order);
 
-        return newOrder;
+        return createdOrder;
     }
 
     public void delete(Long id) {
@@ -39,9 +39,9 @@ public class OrderService {
         Order order = orderRepository.getReferenceById(id);
 
         updateData(order, newOrderData);
-        orderRepository.save(order);
+        Order updatedOrder = orderRepository.save(order);
 
-        return order;
+        return updatedOrder;
     }
 
     public void updateData(Order oldOrderData, Order newOrderData) {
