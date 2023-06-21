@@ -6,6 +6,7 @@ import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -27,8 +28,12 @@ public class UserResource {
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> getById(@PathVariable Long id) {
-        User user = service.getById(id);
-        return ResponseEntity.ok().body(user);
+        try {
+            User user = service.getById(id);
+            return ResponseEntity.ok().body(user);
+        } catch (ResponseStatusException error) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @PostMapping
