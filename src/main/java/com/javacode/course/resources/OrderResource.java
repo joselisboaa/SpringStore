@@ -6,7 +6,9 @@ import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -33,7 +35,9 @@ public class OrderResource {
     public ResponseEntity<Order> create(@RequestBody Order order) {
         Order newOrder = service.create(order);
 
-        return ResponseEntity.ok().body(newOrder);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newOrder.getOrderStatus()).toUri();
+
+        return ResponseEntity.created(uri).body(newOrder);
     }
 
     @DeleteMapping(value = "/{id}")
