@@ -6,7 +6,9 @@ import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -30,7 +32,11 @@ public class UserResource {
     }
 
     @PostMapping
-    public void create(String name, String email, String number, String password) {
-        service.create(name, email, number, password);
+    public ResponseEntity<User> create(@RequestBody User user) {
+        User createdUser = service.create(user);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(createdUser.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(createdUser);
     }
 }
