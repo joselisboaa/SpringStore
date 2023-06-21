@@ -24,4 +24,10 @@ public class OrderService {
 
         return order.get();
     }
+
+    public Order create(Order order) {
+        Order newOrder = orderRepository.save(order);
+
+        return newOrder;
+    }
 }
