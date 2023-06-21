@@ -39,6 +39,7 @@ public class TestConfig implements CommandLineRunner {
         Order o1 = new Order(Instant.parse("2022-06-20T12:05:02Z"), OrderStatus.valueOf("WAITING_PAYMENT"), u1);
         Order o2 = new Order(Instant.parse("2023-06-15T00:02:55Z"), OrderStatus.valueOf("DELIVERED"), u2);
         Order o3 = new Order(Instant.parse("2023-02-06T23:22:32Z"), OrderStatus.valueOf("CANCELED"), u1);
+        Order o4 = new Order(Instant.parse("2023-02-06T23:22:32Z"), OrderStatus.valueOf("PAID"), u1);
 
         Category c1 = new Category("Miscellaneous");
         Category c2 = new Category("Rubber Objects");
@@ -59,6 +60,12 @@ public class TestConfig implements CommandLineRunner {
         categoryRepository.saveAll(Arrays.asList(c1, c2));
         productRepository.saveAll(Arrays.asList(p1, p2));
         orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3));
+
+        Payment pay1 = new Payment(Instant.parse("2023-02-06T23:50:32Z"), o4);
+
+        o4.setPayment(pay1);
+
+        orderRepository.save(o1);
     }
 
 }
