@@ -38,9 +38,9 @@ public class UserService {
     public User update(Long id, User user) {
         User previousUserData = userRepository.getReferenceById(id);
         updateData(previousUserData, user);
-        User newUser = userRepository.save(user);
+        User updatedUser = userRepository.save(user);
 
-        return newUser;
+        return updatedUser;
     }
 
     private void updateData(User oldUserData, User newUserData) {
