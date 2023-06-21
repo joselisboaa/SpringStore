@@ -42,4 +42,11 @@ public class OrderResource {
 
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Order> update(@PathVariable Long id, @RequestBody Order order) {
+        Order updatedOrder = service.update(id, order);
+
+        return ResponseEntity.ok().body(updatedOrder);
+    }
 }

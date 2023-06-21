@@ -34,4 +34,19 @@ public class OrderService {
     public void delete(Long id) {
         orderRepository.deleteById(id);
     }
+
+    public Order update(Long id, Order newOrderData) {
+        Order order = orderRepository.getReferenceById(id);
+
+        updateData(order, newOrderData);
+        orderRepository.save(order);
+
+        return order;
+    }
+
+    public void updateData(Order oldOrderData, Order newOrderData) {
+        oldOrderData.setMoment(newOrderData.getMoment());
+        oldOrderData.setOrderStatus(newOrderData.getOrderStatus());
+        oldOrderData.setPayment(newOrderData.getPayment());
+    }
 }
