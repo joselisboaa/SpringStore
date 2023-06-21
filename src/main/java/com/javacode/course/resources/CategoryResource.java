@@ -41,5 +41,12 @@ public class CategoryResource {
 
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Category> update(@PathVariable Long id, @RequestBody Category newCategoryData) {
+        Category updatedCategory = service.update(id, newCategoryData);
+
+        return ResponseEntity.ok().body(updatedCategory);
+    }
 }
 
