@@ -24,7 +24,8 @@ public class ProductService {
     }
 
     public Product create(Product product) {
-        return repository.save(product);
+        Product createdProduct = repository.save(product);
+        return createdProduct;
     }
 
     public void delete(Long id) {
