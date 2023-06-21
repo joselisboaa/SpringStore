@@ -65,7 +65,7 @@ public class Order implements Serializable {
         this.moment = moment;
     }
 
-    public OrderStatus getOrderStatus() throws IllegalAccessException {
+    public OrderStatus getOrderStatus() {
         return OrderStatus.valueOf(orderStatus);
     }
 
