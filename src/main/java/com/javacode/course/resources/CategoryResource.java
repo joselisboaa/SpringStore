@@ -6,7 +6,9 @@ import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @Resource
@@ -32,7 +34,9 @@ public class CategoryResource {
     public ResponseEntity<Category> create(@RequestBody Category category) {
         Category newCategory = service.create(category);
 
-        return ResponseEntity.ok().body(newCategory);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newCategory.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(newCategory);
     }
 
     @DeleteMapping(value = "/{id}")
