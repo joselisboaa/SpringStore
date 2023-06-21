@@ -22,4 +22,8 @@ public class ProductService {
 
         return product.get();
     }
+
+    public Product create(Product product) {
+        return repository.save(product);
+    }
 }
