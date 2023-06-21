@@ -35,4 +35,11 @@ public class OrderResource {
 
         return ResponseEntity.ok().body(newOrder);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+
+        return ResponseEntity.noContent().build();
+    }
 }
