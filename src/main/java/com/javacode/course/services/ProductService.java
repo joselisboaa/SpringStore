@@ -21,7 +21,7 @@ public class ProductService {
     public Product getById(Long id) {
         Optional<Product> product = repository.findById(id);
 
-        return product.orElseThrow(() -> new ResourceNotFoundException((id)));
+        return product.orElseThrow(() -> new ResourceNotFoundException(("Product not found or not exists.")));
     }
 
     public Product create(Product product) {

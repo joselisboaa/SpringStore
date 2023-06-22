@@ -21,6 +21,6 @@ public class OrderItemService {
 
     public OrderItem getById(Long id) {
         Optional<OrderItem> orderItem = repository.findById(id);
-        return orderItem.orElseThrow(() -> new ResourceNotFoundException((id)));
+        return orderItem.orElseThrow(() -> new ResourceNotFoundException(("Order item not found or not exists")));
     }
 }

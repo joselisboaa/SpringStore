@@ -23,7 +23,7 @@ public class CategoryService  {
     public Category getById(Long id) {
         Optional<Category> category = repository.findById(id);
 
-        return category.orElseThrow(() -> new ResourceNotFoundException((id)));
+        return category.orElseThrow(() -> new ResourceNotFoundException(("Category not found or not exists.")));
     }
 
     public Category create(Category category) {

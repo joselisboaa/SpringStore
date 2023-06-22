@@ -23,7 +23,7 @@ public class OrderService {
     public Order getById(Long id) {
         Optional<Order> order = orderRepository.findById(id);
 
-        return order.orElseThrow(() -> new ResourceNotFoundException((id)));
+        return order.orElseThrow(() -> new ResourceNotFoundException(("Order not found or not exists.")));
     }
 
     public Order create(Order order) {
