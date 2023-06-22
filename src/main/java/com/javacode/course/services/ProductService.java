@@ -43,12 +43,16 @@ public class ProductService {
     }
 
     public Product update(Long id, Product newProductData) {
-        Product product = repository.getReferenceById(id);
-        updateData(product, newProductData);
+        try {
+            Product product = repository.getReferenceById(id);
+            updateData(product, newProductData);
 
-        Product updatedProduct = repository.save(product);
+            Product updatedProduct = repository.save(product);
 
-        return updatedProduct;
+            return updatedProduct;
+        } catch (EntityNotFoundException error) {
+            throw new ResourceNotFoundException("Product not found or not exists.");
+        }
     }
 
     private void updateData(Product oldProductData, Product newProductData) {
