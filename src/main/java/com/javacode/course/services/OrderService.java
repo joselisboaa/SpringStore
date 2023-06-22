@@ -2,6 +2,7 @@ package com.javacode.course.services;
 
 import com.javacode.course.entities.Order;
 import com.javacode.course.repositories.OrderRepository;
+import com.javacode.course.services.exceptions.ResourceNotFoundException;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class OrderService {
     public Order getById(Long id) {
         Optional<Order> order = orderRepository.findById(id);
 
-        return order.get();
+        return order.orElseThrow(() -> new ResourceNotFoundException((id)));
     }
 
     public Order create(Order order) {
