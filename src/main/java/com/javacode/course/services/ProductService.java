@@ -2,6 +2,7 @@ package com.javacode.course.services;
 
 import com.javacode.course.entities.Product;
 import com.javacode.course.repositories.ProductRepository;
+import com.javacode.course.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class ProductService {
     public Product getById(Long id) {
         Optional<Product> product = repository.findById(id);
 
-        return product.get();
+        return product.orElseThrow(() -> new ResourceNotFoundException((id)));
     }
 
     public Product create(Product product) {
