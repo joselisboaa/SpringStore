@@ -2,6 +2,7 @@ package com.javacode.course.services;
 
 import com.javacode.course.entities.Category;
 import com.javacode.course.repositories.CategoryRepository;
+import com.javacode.course.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +23,7 @@ public class CategoryService  {
     public Category getById(Long id) {
         Optional<Category> category = repository.findById(id);
 
-        return category.get();
+        return category.orElseThrow(() -> new ResourceNotFoundException((id)));
     }
 
     public Category create(Category category) {
