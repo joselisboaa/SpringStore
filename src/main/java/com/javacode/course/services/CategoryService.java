@@ -46,12 +46,16 @@ public class CategoryService  {
     }
 
     public Category update(Long id, Category newCategory) {
-        Category category = categoryRepository.getReferenceById(id);
+        try {
+            Category category = categoryRepository.getReferenceById(id);
 
-        updateData(category, newCategory);
-        Category updatedCategory = categoryRepository.save(category);
+            updateData(category, newCategory);
+            Category updatedCategory = categoryRepository.save(category);
 
-        return updatedCategory;
+            return updatedCategory;
+        } catch (EntityNotFoundException error) {
+            throw new DatabaseException(error.getMessage());
+        }
     }
 
     private void updateData(Category oldCategoryData, Category newCategoryData) {
