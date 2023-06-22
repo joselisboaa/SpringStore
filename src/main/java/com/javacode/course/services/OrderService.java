@@ -46,12 +46,16 @@ public class OrderService {
     }
 
     public Order update(Long id, Order newOrderData) {
-        Order order = orderRepository.getReferenceById(id);
+        try {
+            Order order = orderRepository.getReferenceById(id);
 
-        updateData(order, newOrderData);
-        Order updatedOrder = orderRepository.save(order);
+            updateData(order, newOrderData);
+            Order updatedOrder = orderRepository.save(order);
 
-        return updatedOrder;
+            return updatedOrder;
+        } catch (EntityNotFoundException error) {
+            throw new DatabaseException(error.getMessage());
+        }
     }
 
     public void updateData(Order oldOrderData, Order newOrderData) {
