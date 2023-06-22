@@ -38,8 +38,7 @@ public class UserService {
 
     public void delete(Long id) {
         try {
-            User user = getById(id);
-            userRepository.delete(user);
+            userRepository.deleteById(id);
         } catch (EmptyResultDataAccessException error) {
             throw new ResourceNotFoundException("User not found or not exists.");
         } catch (DataIntegrityViolationException error) {
