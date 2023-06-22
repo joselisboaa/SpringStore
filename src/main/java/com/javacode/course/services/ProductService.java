@@ -2,8 +2,11 @@ package com.javacode.course.services;
 
 import com.javacode.course.entities.Product;
 import com.javacode.course.repositories.ProductRepository;
+import com.javacode.course.services.exceptions.DatabaseException;
 import com.javacode.course.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,7 +33,13 @@ public class ProductService {
     }
 
     public void delete(Long id) {
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        } catch (EntityNotFoundException error) {
+            throw new ResourceNotFoundException("Product not found or not exists.");
+        } catch (DataIntegrityViolationException error) {
+            throw new DatabaseException(error.getMessage());
+        }
     }
 
     public Product update(Long id, Product newProductData) {
