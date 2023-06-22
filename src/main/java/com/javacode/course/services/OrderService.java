@@ -54,7 +54,7 @@ public class OrderService {
 
             return updatedOrder;
         } catch (EntityNotFoundException error) {
-            throw new DatabaseException(error.getMessage());
+            throw new ResourceNotFoundException("Order not found or not exist.");
         }
     }
 
