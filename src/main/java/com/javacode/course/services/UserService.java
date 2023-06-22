@@ -2,6 +2,7 @@ package com.javacode.course.services;
 
 import com.javacode.course.entities.User;
 import com.javacode.course.repositories.UserRepository;
+import com.javacode.course.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class UserService {
     public User getById(Long id) {
         Optional<User> user = userRepository.findById(id);
 
-        return user.get();
+        return user.orElseThrow(() -> new ResourceNotFoundException((id)));
     }
 
     public User create(User user) {
