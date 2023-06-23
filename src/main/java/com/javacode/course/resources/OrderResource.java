@@ -1,7 +1,8 @@
 package com.javacode.course.resources;
 
 import com.javacode.course.entities.Order;
-import com.javacode.course.services.OrderService;
+import com.javacode.course.services.IOrderService;
+import com.javacode.course.services.OrderServiceImpl;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ import java.util.List;
 public class OrderResource {
 
     @Autowired
-    private OrderService service;
+    private IOrderService service;
 
     @GetMapping
     public ResponseEntity<List<Order>> getAll() {

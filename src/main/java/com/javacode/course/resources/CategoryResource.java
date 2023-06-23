@@ -1,7 +1,8 @@
 package com.javacode.course.resources;
 
 import com.javacode.course.entities.Category;
-import com.javacode.course.services.CategoryService;
+import com.javacode.course.services.CategoryServiceImpl;
+import com.javacode.course.services.ICategoryService;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ import java.util.List;
 @RequestMapping("/categories/")
 public class CategoryResource {
     @Autowired
-    private CategoryService service;
+    private ICategoryService service;
 
     @GetMapping
     public ResponseEntity<List<Category>> getAll() {

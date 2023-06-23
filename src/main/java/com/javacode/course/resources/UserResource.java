@@ -1,7 +1,8 @@
 package com.javacode.course.resources;
 
 import com.javacode.course.entities.User;
-import com.javacode.course.services.UserService;
+import com.javacode.course.services.IUserService;
+import com.javacode.course.services.UserServiceImpl;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import java.util.List;
 public class UserResource {
 
     @Autowired
-    private UserService service;
+    private IUserService service;
 
     @GetMapping
     public ResponseEntity<List<User>> getAll() {

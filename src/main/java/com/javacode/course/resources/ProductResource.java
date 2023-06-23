@@ -1,7 +1,8 @@
 package com.javacode.course.resources;
 
 import com.javacode.course.entities.Product;
-import com.javacode.course.services.ProductService;
+import com.javacode.course.services.IProductService;
+import com.javacode.course.services.ProductServiceImpl;
 import jakarta.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import java.util.List;
 @Resource
 public class ProductResource {
     @Autowired
-    ProductService service;
+    IProductService service;
 
     @GetMapping
     public ResponseEntity<List<Product>> getAll() {
