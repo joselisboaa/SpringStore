@@ -8,33 +8,36 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CategoryService  {
+public class CategoryServiceImpl implements ICategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Override
     public List<Category> getAll() {
         return categoryRepository.findAll();
     }
 
+    @Override
     public Category getById(Long id) {
         Optional<Category> category = categoryRepository.findById(id);
 
         return category.orElseThrow(() -> new ResourceNotFoundException(("Category not found or not exists.")));
     }
 
+    @Override
     public Category create(Category category) {
         Category createdCategory = categoryRepository.save(category);
 
         return createdCategory;
     }
 
+    @Override
     public void delete(Long id) {
         try {
             categoryRepository.deleteById(id);
@@ -45,6 +48,7 @@ public class CategoryService  {
         }
     }
 
+    @Override
     public Category update(Long id, Category newCategory) {
         try {
             Category category = categoryRepository.getReferenceById(id);
