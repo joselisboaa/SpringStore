@@ -1,5 +1,6 @@
 package com.javacode.course.services;
 
+import com.javacode.course.dto.UserDTO;
 import com.javacode.course.entities.User;
 import com.javacode.course.repositories.UserRepository;
 import com.javacode.course.services.exceptions.DatabaseException;
@@ -54,7 +55,8 @@ public class UserServiceImpl implements IUserService {
         try {
             User previousUserData = userRepository.getReferenceById(id);
             updateData(previousUserData, user);
-            User updatedUser = userRepository.save(user);
+
+            User updatedUser = userRepository.save(previousUserData);
 
             return updatedUser;
         } catch (EntityNotFoundException error) {
