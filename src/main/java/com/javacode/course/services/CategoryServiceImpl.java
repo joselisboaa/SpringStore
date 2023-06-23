@@ -1,6 +1,7 @@
 package com.javacode.course.services;
 
 import com.javacode.course.entities.Category;
+import com.javacode.course.entities.User;
 import com.javacode.course.repositories.CategoryRepository;
 import com.javacode.course.services.exceptions.DatabaseException;
 import com.javacode.course.services.exceptions.ResourceNotFoundException;
@@ -58,7 +59,7 @@ public class CategoryServiceImpl implements ICategoryService {
 
             return updatedCategory;
         } catch (EntityNotFoundException error) {
-            throw new DatabaseException(error.getMessage());
+            throw new ResourceNotFoundException("Category not found or not exists.");
         }
     }
 
