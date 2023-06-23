@@ -13,25 +13,29 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductService {
+public class ProductServiceImpl implements IProductService {
     @Autowired
     private ProductRepository repository;
 
+    @Override
     public List<Product> getAll() {
         return repository.findAll();
     }
 
+    @Override
     public Product getById(Long id) {
         Optional<Product> product = repository.findById(id);
 
         return product.orElseThrow(() -> new ResourceNotFoundException(("Product not found or not exists.")));
     }
 
+    @Override
     public Product create(Product product) {
         Product createdProduct = repository.save(product);
         return createdProduct;
     }
 
+    @Override
     public void delete(Long id) {
         try {
             repository.deleteById(id);
@@ -42,6 +46,7 @@ public class ProductService {
         }
     }
 
+    @Override
     public Product update(Long id, Product newProductData) {
         try {
             Product product = repository.getReferenceById(id);
