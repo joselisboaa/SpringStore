@@ -10,25 +10,20 @@ import java.util.*;
 @Entity
 public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(nullable = false)
     private String name;
     private String description;
-
     @Column(nullable = false)
     private Double price;
     private String imgUrl;
-
     @ManyToMany
     @JoinTable(name = "product_category",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
-
     @OneToMany(mappedBy = "id.product")
     private Set<OrderItem> orderItems = new HashSet<>();
 

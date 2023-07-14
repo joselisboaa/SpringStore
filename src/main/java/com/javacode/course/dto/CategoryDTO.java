@@ -8,7 +8,6 @@ import java.util.Objects;
 public class CategoryDTO {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
-
     @NotBlank(message = "The name cannot be blank")
     private String name;
 

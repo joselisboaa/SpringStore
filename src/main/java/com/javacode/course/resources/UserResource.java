@@ -20,10 +20,8 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/users/")
 @Resource
 public class UserResource {
-
     @Autowired
     private ModelMapper modelMapper;
-
     @Autowired
     private IUserService service;
 

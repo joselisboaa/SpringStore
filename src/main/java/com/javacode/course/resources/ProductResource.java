@@ -22,7 +22,6 @@ import java.util.stream.Collectors;
 public class ProductResource {
     @Autowired
     ModelMapper modelMapper;
-
     @Autowired
     IProductService service;
 

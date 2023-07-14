@@ -13,7 +13,6 @@ import java.util.Objects;
 @Table(name = "users")
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,7 +20,6 @@ public class User implements Serializable {
     private String email;
     private String number;
     private String password;
-
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 

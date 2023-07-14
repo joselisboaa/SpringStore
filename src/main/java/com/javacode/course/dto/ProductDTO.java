@@ -15,27 +15,20 @@ import java.util.Objects;
 import java.util.Set;
 
 public class ProductDTO {
-
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
-
     @NotBlank(message = "The name cannot be blank")
     private String name;
-
     private String description;
-
     @NotNull(message = "The price cannot be null")
     private Double price;
-
     @ManyToMany
     @JoinTable(name = "product_category",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
-
     @OneToMany(mappedBy = "id.product")
     private Set<OrderItem> orderItems = new HashSet<>();
-
     private String imgUrl;
 
     public Long getId() {

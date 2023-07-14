@@ -7,17 +7,13 @@ import jakarta.validation.constraints.NotBlank;
 import java.util.Objects;
 
 public class UserDTO {
-
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
-
     @NotBlank(message = "The email cannot be blank")
     @Email
     private String email;
-
     @NotBlank(message = "The number cannot be blank")
     private String number;
-
     @NotBlank(message = "The name cannot be blank")
     private String name;
 

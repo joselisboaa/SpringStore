@@ -20,10 +20,8 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/categories/")
 public class CategoryResource {
-
     @Autowired
     private ModelMapper modelMapper;
-
     @Autowired
     private ICategoryService service;
 

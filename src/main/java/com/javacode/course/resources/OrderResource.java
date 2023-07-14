@@ -16,7 +16,6 @@ import java.util.List;
 @RequestMapping(value = "/orders/")
 @Resource
 public class OrderResource {
-
     @Autowired
     private IOrderService service;
 
